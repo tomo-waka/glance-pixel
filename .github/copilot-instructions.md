@@ -26,6 +26,23 @@ The first functional goal is intentionally narrow:
   - rendering a 64x64 output
   - sending the result to the target device
 
+--
+
+## Technology Selection Principle
+
+When choosing libraries, frameworks, or tools, **prefer actively evolving and promising options over established-but-stagnating ones**.
+
+Rationale: this project targets a modern runtime (Node.js >= 22, TypeScript ES2024) and a long-term maintenance horizon. Choosing tools with active development and strong community momentum reduces future migration burden.
+
+Examples of this principle applied:
+
+- **vitest** over jest — native ESM support, faster, active development
+- **jimp v1** (pure ESM) over older alternatives
+- Prefer native Node.js APIs over polyfills when available on Node >= 22
+
+When two options are otherwise equal, prefer the one with stronger momentum in the current ecosystem.
+This does not mean chasing every new release — stability and Raspberry Pi compatibility remain hard constraints.
+
 ---
 
 ## Core Development Rules
