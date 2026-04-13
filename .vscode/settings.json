@@ -1,7 +1,15 @@
 {
+  // Terminal
+  "terminal.integrated.env.windows": {
+    "LANG": "en_US.UTF-8"
+  },
   // AI / chat
   "chat.disableAIFeatures": false,
   "github.copilot.enable": {
     "*": true
-  }
+  },
+  // Dictonary
+  "cSpell.words": ["Divoom", "Pixoo"]
+  // Formatter
+  //"editor.defaultFormatter": "oxc.oxc-vscode"
 }
