@@ -14,25 +14,25 @@ The first functional goal is intentionally narrow:
 
 ## Tech Stack
 
-| Concern | Choice | Reason |
-|---|---|---|
-| Language | TypeScript (strict) | Type safety across package boundaries |
-| Runtime | Node.js >= 22 | LTS, native fetch, good ARM support |
-| Monorepo | npm workspaces | Simple, no additional tooling required |
-| Reactivity | RxJS | Observable-based push/pull model for widget updates |
-| Image composition | node-canvas | Canvas API for widget rendering; familiar drawing model |
-| Package manager | npm | Consistent with Node.js ecosystem |
+| Concern           | Choice              | Reason                                                  |
+| ----------------- | ------------------- | ------------------------------------------------------- |
+| Language          | TypeScript (strict) | Type safety across package boundaries                   |
+| Runtime           | Node.js >= 22       | LTS, native fetch, good ARM support                     |
+| Monorepo          | npm workspaces      | Simple, no additional tooling required                  |
+| Reactivity        | RxJS                | Observable-based push/pull model for widget updates     |
+| Image composition | node-canvas         | Canvas API for widget rendering; familiar drawing model |
+| Package manager   | npm                 | Consistent with Node.js ecosystem                       |
 
 ## Monorepo Package Structure
 
 Each architectural layer maps to exactly one npm workspace package.
 
-| Package | Layer | One-line responsibility |
-|---|---|---|
-| `glance-pixel-core` | Domain | Device-independent models and interfaces only |
-| `glance-pixel-renderer` | Rendering | Compose widget pixel buffers into a 64×64 frame |
-| `glance-pixel-infra` | Infrastructure | All I/O: device client, weather API, config, logging |
-| `glance-pixel-app` | Application | Orchestrate the above; own the main loop |
+| Package                 | Layer          | One-line responsibility                              |
+| ----------------------- | -------------- | ---------------------------------------------------- |
+| `glance-pixel-core`     | Domain         | Device-independent models and interfaces only        |
+| `glance-pixel-renderer` | Rendering      | Compose widget pixel buffers into a 64×64 frame      |
+| `glance-pixel-infra`    | Infrastructure | All I/O: device client, weather API, config, logging |
+| `glance-pixel-app`      | Application    | Orchestrate the above; own the main loop             |
 
 **See `.github/instructions/architecture.instructions.md` for dependency rules.**  
 **See `.github/instructions/domain-model.instructions.md` for type definitions and design rationale.**

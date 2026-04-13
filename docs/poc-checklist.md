@@ -19,9 +19,9 @@ This document defines what must be verified before proceeding to Milestone 2.
 
 **Question:** Can the host machine send an HTTP request to the device and receive a response?
 
-| Result | Action |
-|---|---|
-| ✅ Response received | Proceed to V2 |
+| Result                          | Action                                                 |
+| ------------------------------- | ------------------------------------------------------ |
+| ✅ Response received            | Proceed to V2                                          |
 | ❌ Connection refused / timeout | Check device IP, firewall, and network; do not proceed |
 
 ---
@@ -32,11 +32,11 @@ This document defines what must be verified before proceeding to Milestone 2.
 
 The PoC script sends a solid red 64×64 frame.
 
-| Result | Action |
-|---|---|
-| ✅ Red frame appears on device | Proceed to V3 |
-| ❌ Request succeeds but no change on device | Investigate API payload format |
-| ❌ Request fails | Log response body and investigate |
+| Result                                      | Action                            |
+| ------------------------------------------- | --------------------------------- |
+| ✅ Red frame appears on device              | Proceed to V3                     |
+| ❌ Request succeeds but no change on device | Investigate API payload format    |
+| ❌ Request fails                            | Log response body and investigate |
 
 ---
 
@@ -46,10 +46,10 @@ The PoC script sends a solid red 64×64 frame.
 
 The PoC script waits 3 seconds, then sends a solid blue frame.
 
-| Result | Action |
-|---|---|
-| ✅ Display changes from red to blue | Proceed to V4 |
-| ❌ Display does not change | Investigate whether a different API endpoint or parameter is needed for updates |
+| Result                              | Action                                                                          |
+| ----------------------------------- | ------------------------------------------------------------------------------- |
+| ✅ Display changes from red to blue | Proceed to V4                                                                   |
+| ❌ Display does not change          | Investigate whether a different API endpoint or parameter is needed for updates |
 
 ---
 
@@ -59,10 +59,10 @@ The PoC script waits 3 seconds, then sends a solid blue frame.
 
 This item does not block Milestone 2, but the answer determines the Scene rotation architecture:
 
-| Result | Design implication |
-|---|---|
-| ✅ Device rotates frames autonomously | Scene rotation can be offloaded to device; host sends a batch |
-| ❌ No native rotation support | Host must implement the rotation loop (timer-based frame switching) |
+| Result                                | Design implication                                                  |
+| ------------------------------------- | ------------------------------------------------------------------- |
+| ✅ Device rotates frames autonomously | Scene rotation can be offloaded to device; host sends a batch       |
+| ❌ No native rotation support         | Host must implement the rotation loop (timer-based frame switching) |
 
 Record the result here before proceeding.
 

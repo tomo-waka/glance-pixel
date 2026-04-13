@@ -1,7 +1,7 @@
 # GlancePixel — Architecture Reference
 
 Human-readable companion to the Copilot instruction files.
-This document explains *why* decisions were made, not just *what* they are.
+This document explains _why_ decisions were made, not just _what_ they are.
 
 ## Design Principles
 
@@ -18,6 +18,7 @@ Weather data, time, and any future information source are abstracted behind inte
 ### 3. Rendering Is Independent of Transmission
 
 Compositing a 64×64 frame and sending it to the device are separate steps. This enables:
+
 - Local preview without a device
 - Testing the renderer in isolation
 - Future support for multiple output targets (different devices, file export, etc.)
@@ -74,10 +75,10 @@ Scene
 
 Two independent refresh mechanisms coexist:
 
-| Mechanism | Owner | Driven by |
-|---|---|---|
-| Frame rotation | Scene | `duration` in `FrameEntry` (time-based, pull) |
-| Widget content update | Widget | `updates$` Observable (data-driven, push) |
+| Mechanism             | Owner  | Driven by                                     |
+| --------------------- | ------ | --------------------------------------------- |
+| Frame rotation        | Scene  | `duration` in `FrameEntry` (time-based, pull) |
+| Widget content update | Widget | `updates$` Observable (data-driven, push)     |
 
 A widget emits on `updates$` whenever its data changes (e.g. the minute ticks over for ClockWidget, or a weather API response arrives for WeatherWidget). The Frame merges all widget streams and throttles them to avoid unnecessary recomposition.
 
@@ -103,16 +104,16 @@ A widget must always emit a renderable snapshot regardless of data quality. Stal
 
 ## Milestone Plan
 
-| # | Milestone | Deliverable |
-|---|---|---|
-| 1 | PoC: Pixoo API connectivity | `experiments/pixoo-poc/`: verify HTTP reach, image send, update |
-| 2 | Static local rendering | Render a test frame to PNG without a device |
-| 3 | Send rendered output to Pixoo | Connect renderer output to PixooClient |
-| 4 | Dynamic clock-only update | ClockWidget updates every minute, stable over time |
-| 5 | Weather provider integration | WeatherApiClient + WeatherSnapshot, validated independently |
-| 6 | Clock + weather combined scene | First complete end-to-end scene |
-| 7 | Reliability and error handling | Retries, stale data, logging, config review |
-| 8 | Raspberry Pi readiness | Headless execution, startup scripts, config review |
+| #   | Milestone                      | Deliverable                                                     |
+| --- | ------------------------------ | --------------------------------------------------------------- |
+| 1   | PoC: Pixoo API connectivity    | `experiments/pixoo-poc/`: verify HTTP reach, image send, update |
+| 2   | Static local rendering         | Render a test frame to PNG without a device                     |
+| 3   | Send rendered output to Pixoo  | Connect renderer output to PixooClient                          |
+| 4   | Dynamic clock-only update      | ClockWidget updates every minute, stable over time              |
+| 5   | Weather provider integration   | WeatherApiClient + WeatherSnapshot, validated independently     |
+| 6   | Clock + weather combined scene | First complete end-to-end scene                                 |
+| 7   | Reliability and error handling | Retries, stale data, logging, config review                     |
+| 8   | Raspberry Pi readiness         | Headless execution, startup scripts, config review              |
 
 **Current milestone: 1**. Do not implement beyond the current milestone.
 

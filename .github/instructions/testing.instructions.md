@@ -8,16 +8,16 @@ applyTo: "packages/**/*.test.ts,packages/**/*.spec.ts"
 
 The architecture is designed so that the following can be validated without a physical device or live network:
 
-| Concern | How to test |
-|---|---|
-| Weather API response mapping | Unit test: raw API fixture → `WeatherSnapshot` |
-| `WeatherCondition` classification | Unit test: condition code → union type member |
-| Widget snapshot output | Unit test: given config + mock data → `PixelBuffer` content |
-| Frame composition (z-order, x/y placement) | Unit test: known widget buffers → expected composited buffer |
-| Widget lifecycle (`activate` / `deactivate`) | Unit test with RxJS `TestScheduler` |
-| Refresh scheduling and throttling | Unit test with RxJS `TestScheduler` |
-| Config loading and validation | Unit test: env vars → typed config object or thrown error |
-| Device adapter interface | Unit test against a mock transport, not a real device |
+| Concern                                      | How to test                                                  |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| Weather API response mapping                 | Unit test: raw API fixture → `WeatherSnapshot`               |
+| `WeatherCondition` classification            | Unit test: condition code → union type member                |
+| Widget snapshot output                       | Unit test: given config + mock data → `PixelBuffer` content  |
+| Frame composition (z-order, x/y placement)   | Unit test: known widget buffers → expected composited buffer |
+| Widget lifecycle (`activate` / `deactivate`) | Unit test with RxJS `TestScheduler`                          |
+| Refresh scheduling and throttling            | Unit test with RxJS `TestScheduler`                          |
+| Config loading and validation                | Unit test: env vars → typed config object or thrown error    |
+| Device adapter interface                     | Unit test against a mock transport, not a real device        |
 
 ## What Not to Unit Test
 
@@ -50,15 +50,15 @@ packages/glance-pixel-infra/src/
 Use `TestScheduler` for any test involving `throttleTime`, `debounceTime`, `delay`, or multi-widget merge behaviour:
 
 ```typescript
-import { TestScheduler } from 'rxjs/testing'
+import { TestScheduler } from "rxjs/testing";
 
 const scheduler = new TestScheduler((actual, expected) => {
-  expect(actual).toEqual(expected)
-})
+  expect(actual).toEqual(expected);
+});
 
 scheduler.run(({ cold, expectObservable }) => {
   // define marble diagrams here
-})
+});
 ```
 
 ## Reliability Rules for Tests

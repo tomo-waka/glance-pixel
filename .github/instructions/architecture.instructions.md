@@ -26,12 +26,12 @@ Arrows mean "depends on". There are no other allowed dependencies between packag
 
 ## Prohibited Dependencies
 
-| From | To | Why |
-|---|---|---|
-| `glance-pixel-renderer` | `glance-pixel-infra` | Rendering must work without a device or network |
-| `glance-pixel-infra` | `glance-pixel-renderer` | Infrastructure must not know about visual composition |
-| `glance-pixel-core` | `glance-pixel-renderer` | Core is device- and render-agnostic |
-| `glance-pixel-core` | `glance-pixel-infra` | Core must not know about external systems |
+| From                    | To                      | Why                                                   |
+| ----------------------- | ----------------------- | ----------------------------------------------------- |
+| `glance-pixel-renderer` | `glance-pixel-infra`    | Rendering must work without a device or network       |
+| `glance-pixel-infra`    | `glance-pixel-renderer` | Infrastructure must not know about visual composition |
+| `glance-pixel-core`     | `glance-pixel-renderer` | Core is device- and render-agnostic                   |
+| `glance-pixel-core`     | `glance-pixel-infra`    | Core must not know about external systems             |
 
 If you find yourself wanting to import across a prohibited boundary, stop and reconsider the design. The correct solution is almost always to define an interface in `core` and implement it in the appropriate package.
 
@@ -40,6 +40,7 @@ If you find yourself wanting to import across a prohibited boundary, stop and re
 ### `glance-pixel-core`
 
 Contains only:
+
 - TypeScript interfaces and types (no implementation classes)
 - Pure value-object logic with no side effects
 - The `Widget`, `Frame`, `Scene`, and snapshot interfaces
@@ -47,6 +48,7 @@ Contains only:
 - RxJS `Observable` types used in interfaces
 
 Does NOT contain:
+
 - Any I/O, logging, or side effects
 - Any rendering or canvas operations
 - Any device-specific knowledge
@@ -54,6 +56,7 @@ Does NOT contain:
 ### `glance-pixel-renderer`
 
 Contains:
+
 - Frame composition logic (merging widget `PixelBuffer`s by x/y/z placement)
 - Widget rendering implementations (ClockWidget, WeatherWidget, etc.)
 - Local preview image export (write a PNG for development validation)
@@ -65,6 +68,7 @@ The renderer must be fully usable without a Pixoo device connected.
 ### `glance-pixel-infra`
 
 Contains:
+
 - `PixooClient`: HTTP transport to the Divoom Pixoo 64
 - `WeatherApiClient`: fetches external weather data and maps it to `WeatherSnapshot`
 - `ConfigLoader`: reads `.env` / environment variables into a typed config object
@@ -76,6 +80,7 @@ Only `core` types are exported across the package boundary.
 ### `glance-pixel-app`
 
 Contains:
+
 - Main entry point
 - Scene construction and widget lifecycle management (`activate` / `deactivate`)
 - RxJS pipeline: subscribes to `Frame.updates$`, calls renderer, sends to device

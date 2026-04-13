@@ -24,7 +24,7 @@ Scene
 ## Core Types
 
 ```typescript
-import { Observable } from 'rxjs'
+import { Observable } from "rxjs";
 
 // ---- Pixel buffer ----
 
@@ -34,9 +34,9 @@ import { Observable } from 'rxjs'
  * enabling zero-copy handoff between widget rendering and frame composition.
  */
 interface PixelBuffer {
-  readonly width: number
-  readonly height: number
-  readonly data: Uint8ClampedArray  // RGBA, length = width * height * 4
+  readonly width: number;
+  readonly height: number;
+  readonly data: Uint8ClampedArray; // RGBA, length = width * height * 4
 }
 
 // ---- Widget state ----
@@ -45,14 +45,14 @@ interface PixelBuffer {
  * Lifecycle: whether the widget should be producing updates.
  * inactive widgets stop their internal timers and data fetching.
  */
-type WidgetLifecycle = 'active' | 'inactive'
+type WidgetLifecycle = "active" | "inactive";
 
 /**
  * Data quality: whether the widget's current snapshot reflects fresh data.
  * A widget may be active but stale (e.g. weather API timed out).
  * These two axes are independent — do not conflate them.
  */
-type WidgetDataQuality = 'fresh' | 'stale'
+type WidgetDataQuality = "fresh" | "stale";
 
 // ---- Snapshot ----
 
@@ -63,27 +63,27 @@ type WidgetDataQuality = 'fresh' | 'stale'
  * placeholder icon) and sets dataQuality accordingly.
  */
 interface WidgetSnapshot {
-  readonly dataQuality: WidgetDataQuality
-  readonly pixels: PixelBuffer
+  readonly dataQuality: WidgetDataQuality;
+  readonly pixels: PixelBuffer;
 }
 
 // ---- Widget ----
 
 interface Widget {
-  readonly id: string
-  readonly lifecycle: WidgetLifecycle
+  readonly id: string;
+  readonly lifecycle: WidgetLifecycle;
 
   /**
    * Called by Frame when this widget becomes visible.
    * The widget should start (or resume) its internal refresh cycle.
    */
-  activate(): void
+  activate(): void;
 
   /**
    * Called by Frame when this widget is no longer visible.
    * The widget should pause updates to conserve resources.
    */
-  deactivate(): void
+  deactivate(): void;
 
   /**
    * Hot observable: emits a new WidgetSnapshot whenever the widget's content changes.
@@ -93,15 +93,15 @@ interface Widget {
    * The Frame is responsible for throttling the combined stream — widgets must not
    * attempt to coordinate their own emission timing with each other.
    */
-  readonly updates$: Observable<WidgetSnapshot>
+  readonly updates$: Observable<WidgetSnapshot>;
 }
 
 // ---- Frame ----
 
 interface WidgetPlacement {
-  readonly widget: Widget
-  readonly x: number   // top-left x offset in the 64×64 canvas
-  readonly y: number   // top-left y offset in the 64×64 canvas
+  readonly widget: Widget;
+  readonly x: number; // top-left x offset in the 64×64 canvas
+  readonly y: number; // top-left y offset in the 64×64 canvas
   // z-order is implicit: later entries in Frame.placements render on top
 }
 
@@ -110,11 +110,11 @@ interface FrameSnapshot {
    * The fully composited 64×64 pixel buffer, ready to send to the device.
    * Always exactly 64×64 — this invariant must be enforced by the renderer.
    */
-  readonly pixels: PixelBuffer
+  readonly pixels: PixelBuffer;
 }
 
 interface Frame {
-  readonly placements: WidgetPlacement[]
+  readonly placements: WidgetPlacement[];
 
   /**
    * Emits a composited FrameSnapshot whenever any contained widget updates.
@@ -127,18 +127,18 @@ interface Frame {
    *     map(() => compose(placements))
    *   )
    */
-  readonly updates$: Observable<FrameSnapshot>
+  readonly updates$: Observable<FrameSnapshot>;
 }
 
 // ---- Scene ----
 
 interface FrameEntry {
-  readonly frame: Frame
-  readonly duration: number  // milliseconds — how long Scene displays this frame
+  readonly frame: Frame;
+  readonly duration: number; // milliseconds — how long Scene displays this frame
 }
 
 interface Scene {
-  readonly entries: FrameEntry[]
+  readonly entries: FrameEntry[];
 }
 ```
 
@@ -166,18 +166,18 @@ interface Scene {
  * This mapping is performed in glance-pixel-infra — core never sees raw API codes.
  */
 type WeatherCondition =
-  | 'clear'
-  | 'few-clouds'
-  | 'cloudy'
-  | 'drizzle'
-  | 'shower-rain'
-  | 'rain'
-  | 'freezing-rain'
-  | 'thunderstorm'
-  | 'snow'
-  | 'sleet'
-  | 'fog'
-  | 'unknown'
+  | "clear"
+  | "few-clouds"
+  | "cloudy"
+  | "drizzle"
+  | "shower-rain"
+  | "rain"
+  | "freezing-rain"
+  | "thunderstorm"
+  | "snow"
+  | "sleet"
+  | "fog"
+  | "unknown";
 
 /**
  * Internal weather data model.
@@ -185,10 +185,10 @@ type WeatherCondition =
  * Temperature is always stored in Celsius; display formatting is the widget's concern.
  */
 interface WeatherSnapshot {
-  readonly condition: WeatherCondition
-  readonly temperatureCelsius: number
-  readonly feelsLikeCelsius?: number
-  readonly fetchedAt: Date
+  readonly condition: WeatherCondition;
+  readonly temperatureCelsius: number;
+  readonly feelsLikeCelsius?: number;
+  readonly fetchedAt: Date;
 }
 ```
 
@@ -196,14 +196,14 @@ interface WeatherSnapshot {
 
 ```typescript
 interface ClockWidgetConfig {
-  readonly format: '12h' | '24h'
-  readonly showSeconds: boolean
-  readonly timezone: string  // IANA format, e.g. 'Asia/Tokyo'
+  readonly format: "12h" | "24h";
+  readonly showSeconds: boolean;
+  readonly timezone: string; // IANA format, e.g. 'Asia/Tokyo'
 }
 
 interface WeatherWidgetConfig {
-  readonly location: string   // city name or lat,lon string
-  readonly refreshInterval: number  // milliseconds; recommend >= 600_000 (10 min)
+  readonly location: string; // city name or lat,lon string
+  readonly refreshInterval: number; // milliseconds; recommend >= 600_000 (10 min)
 }
 ```
 
