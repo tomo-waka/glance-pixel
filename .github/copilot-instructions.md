@@ -63,6 +63,14 @@ The full development lifecycle — session types, planning stages, implementatio
 
 This is an early-stage greenfield project with no existing users or production dependencies.
 
+### Autonomy Priority Rule
+
+Autonomy in this section is subordinate to required workflow gates defined in [development-workflow.instructions.md](instructions/development-workflow.instructions.md).
+
+When there is any conflict between "proceed without asking" behavior and workflow-required human confirmation points, the workflow gates take priority.
+
+This is a blocking rule: do not advance across required phase boundaries or stage transitions without explicit human confirmation when the workflow document requires a pause.
+
 **Proceed without asking for confirmation** for all local, reversible actions:
 
 - Creating, editing, or moving files
