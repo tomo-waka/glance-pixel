@@ -11,9 +11,10 @@
   "type": "module",
   "scripts": {
     "build": "npm run build --workspaces --if-present",
+    "format": "node -e \"console.error('Error: Please run format:check or format:write instead.'); process.exit(1)\"",
     "format:check": "oxfmt --check",
     "format:write": "oxfmt",
-    "lint:check": "oxlint",
+    "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "typecheck": "npm run typecheck --workspaces --if-present"
   },

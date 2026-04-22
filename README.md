@@ -4,10 +4,6 @@ A custom information display service for pixel-based devices, built with TypeScr
 
 The initial target device is the **Divoom Pixoo 64** (64×64 LED matrix), but the architecture is designed to remain device-agnostic.
 
-## Status
-
-> Early development — Milestone 1: Pixoo API connectivity validation.
-
 ## Features (planned)
 
 - Current time display

@@ -37,15 +37,6 @@ Each architectural layer maps to exactly one npm workspace package.
 **See `.github/instructions/architecture.instructions.md` for dependency rules.**  
 **See `.github/instructions/domain-model.instructions.md` for type definitions and design rationale.**
 
-## Current Milestone
-
-> **Milestone 1 — PoC: Pixoo API connectivity**  
-> Validate that the device can be reached and that a 64×64 image can be sent and updated.  
-> Implementation lives in `experiments/pixoo-poc/` and is intentionally outside the main package structure.  
-> **See `docs/poc-checklist.md` for verification criteria.**
-
-Do not implement beyond the current milestone unless explicitly instructed.
-
 ## Non-Negotiable Rules
 
 - `glance-pixel-core` must not depend on any package other than RxJS.

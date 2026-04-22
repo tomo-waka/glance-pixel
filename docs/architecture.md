@@ -102,23 +102,6 @@ A widget must always emit a renderable snapshot regardless of data quality. Stal
 
 ---
 
-## Milestone Plan
-
-| #   | Milestone                      | Deliverable                                                     |
-| --- | ------------------------------ | --------------------------------------------------------------- |
-| 1   | PoC: Pixoo API connectivity    | `experiments/pixoo-poc/`: verify HTTP reach, image send, update |
-| 2   | Static local rendering         | Render a test frame to PNG without a device                     |
-| 3   | Send rendered output to Pixoo  | Connect renderer output to PixooClient                          |
-| 4   | Dynamic clock-only update      | ClockWidget updates every minute, stable over time              |
-| 5   | Weather provider integration   | WeatherApiClient + WeatherSnapshot, validated independently     |
-| 6   | Clock + weather combined scene | First complete end-to-end scene                                 |
-| 7   | Reliability and error handling | Retries, stale data, logging, config review                     |
-| 8   | Raspberry Pi readiness         | Headless execution, startup scripts, config review              |
-
-**Current milestone: 1**. Do not implement beyond the current milestone.
-
----
-
 ## Raspberry Pi Compatibility Notes
 
 - No GUI dependencies — all output is either device-bound or file-based (PNG preview).

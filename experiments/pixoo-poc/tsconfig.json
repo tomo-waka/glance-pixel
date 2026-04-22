@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    // Add Node.js globals (process, Buffer, console, setTimeout, fetch, etc.)
+    "types": ["node"],
+    // No output needed — tsx runs the script directly
+    "noEmit": true
+  },
+  "include": ["*.ts"],
+  // Override the root's exclude so this directory is not blocked by its own parent's rule.
+  "exclude": []
+}

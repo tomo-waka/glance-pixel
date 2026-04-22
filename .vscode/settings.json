@@ -11,7 +11,7 @@
   },
 
   // Dictonary
-  "cSpell.words": ["Divoom", "Pixoo"],
+  "cSpell.words": ["Divoom", "oxfmt", "oxlint", "Pixoo"],
 
   // Formatter
   "editor.defaultFormatter": "oxc.oxc-vscode"
