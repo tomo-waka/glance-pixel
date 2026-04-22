@@ -63,3 +63,23 @@ Do not implement beyond the current milestone unless explicitly instructed.
 - Use clear, intention-revealing names over generic helpers.
 - Use `async/await`; avoid raw Promise chains.
 - Include the reasoning behind non-obvious decisions as inline comments.
+
+## Planning & Phase-Execution Guidance
+
+The full development lifecycle — session types, planning stages, implementation cycle, summary formats, and role expectations — is defined in [development-workflow.instructions.md](instructions/development-workflow.instructions.md). Refer to that document for all workflow-related guidance.
+
+## Autonomy
+
+This is an early-stage greenfield project with no existing users or production dependencies.
+
+**Proceed without asking for confirmation** for all local, reversible actions:
+
+- Creating, editing, or moving files
+- Installing or updating dependencies
+- Running builds, tests, linters, or formatters
+- Creating commits
+
+**Always ask before:**
+
+- Deleting any file or directory
+- Running `git push`, `git reset --hard`, or any history-altering command
