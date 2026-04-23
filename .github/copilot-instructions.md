@@ -55,21 +55,28 @@ Each architectural layer maps to exactly one npm workspace package.
 - Use `async/await`; avoid raw Promise chains.
 - Include the reasoning behind non-obvious decisions as inline comments.
 
-## Planning & Phase-Execution Guidance
+## Workflow Priority
 
-The full development lifecycle — session types, planning stages, implementation cycle, summary formats, and role expectations — is defined in [development-workflow.instructions.md](instructions/development-workflow.instructions.md). Refer to that document for all workflow-related guidance.
+When the development lifecycle is being executed under the Development Workflow,
+the gate rules and step-transition rules in
+`development-workflow.instructions.md` override the general autonomy policy in
+this file.
+
+In particular:
+
+- Do not infer authorization for the next workflow step from generic replies
+  such as "continue", "proceed", or "yes"
+- Stop at every workflow gate and wait for a valid human response
+- Treat waiting at a workflow gate as correct completion behavior
 
 ## Autonomy
 
 This is an early-stage greenfield project with no existing users or production dependencies.
 
-### Autonomy Priority Rule
+Favor autonomous execution for local work inside an already authorized step.
 
-Autonomy in this section is subordinate to required workflow gates defined in [development-workflow.instructions.md](instructions/development-workflow.instructions.md).
-
-When there is any conflict between "proceed without asking" behavior and workflow-required human confirmation points, the workflow gates take priority.
-
-This is a blocking rule: do not advance across required phase boundaries or stage transitions without explicit human confirmation when the workflow document requires a pause.
+Always follow workflow-specific gate rules when a referenced workflow document
+requires explicit human authorization before the next step.
 
 **Proceed without asking for confirmation** for all local, reversible actions:
 
